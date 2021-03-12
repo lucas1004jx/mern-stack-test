@@ -8,19 +8,24 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 
 function PostListItem({ post, onDelete }) {
+  const {
+    title, content, name, cuid, slug,
+  } = post;
   return (
     <Card className="w-100 my-4">
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
-          <Link to={`/posts/${post.cuid}/${post.slug}`} >
-            {post.title}
+          <Link to={`/posts/${cuid}/${slug}`}>
+            {title}
           </Link>
         </Typography>
         <Typography component="p" className="mt-3">
-          {post.content}
+          {content}
         </Typography>
         <Typography color="textSecondary" component="p" className="mt-3 font-italic">
-          From {post.name}
+          From
+          {' '}
+          {name}
         </Typography>
       </CardContent>
       <CardActions>

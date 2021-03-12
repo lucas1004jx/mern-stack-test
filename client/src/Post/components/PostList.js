@@ -5,11 +5,12 @@ import PropTypes from 'prop-types';
 import PostListItem from './PostListItem';
 
 function PostList(props) {
+  const { posts = [] } = props;
   return (
     <div className="d-flex flex-column w-100">
       <h3 className="mt-4">Posts</h3>
       {
-        props.posts.map(post => (
+        posts.map((post) => (
           <PostListItem
             post={post}
             key={post.cuid}

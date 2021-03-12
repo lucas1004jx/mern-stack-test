@@ -5,16 +5,15 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
 function Navbar() {
-    return (
-        <AppBar position="fixed">
-            <Toolbar>
-                <Typography variant="h6" >
-                    <Link href="/" className="text-white">Home</Link>
-                </Typography>
-            </Toolbar>
-        </AppBar>
-    );
-
-};
+  return (
+    <AppBar position="fixed">
+      <Toolbar>
+        <Typography variant="h6">
+          <Link href="/" className="text-white">Home</Link>
+        </Typography>
+      </Toolbar>
+    </AppBar>
+  );
+}
 
 export default Navbar;

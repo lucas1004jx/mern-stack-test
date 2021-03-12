@@ -9,15 +9,14 @@ import { addPostRequest, deletePostRequest, fetchPosts } from '../../PostActions
 import Logo from '../../../logo.svg';
 
 const PostListPage = ({ showAddPost }) => {
-
   const dispatch = useDispatch();
-  const posts = useSelector(state => state.posts.data);
+  const posts = useSelector((state) => state.posts.data);
 
   useEffect(() => {
     dispatch(fetchPosts());
-  },[]);
+  }, []);
 
-  const handleDeletePost = post => {
+  const handleDeletePost = (post) => {
     if (confirm('Do you want to delete this post')) { // eslint-disable-line
       dispatch(deletePostRequest(post));
     }
@@ -31,9 +30,9 @@ const PostListPage = ({ showAddPost }) => {
     <div className="container">
       <div className="row">
         <div className="col-12 d-flex align-items-center">
-          <img className="mx-3" src={Logo} alt="Logo" style={{ height: '72px'}}/>
+          <img className="mx-3" src={Logo} alt="Logo" style={{ height: '72px' }} />
           <h1 className="mt-4">
-             Alaya Blog
+            Alaya Blog
           </h1>
         </div>
       </div>
@@ -51,8 +50,7 @@ const PostListPage = ({ showAddPost }) => {
 };
 
 PostListPage.propTypes = {
-  showAddPost: PropTypes.bool.isRequired
+  showAddPost: PropTypes.bool.isRequired,
 };
-
 
 export default PostListPage;
