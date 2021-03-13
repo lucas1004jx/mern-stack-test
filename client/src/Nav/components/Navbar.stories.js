@@ -1,10 +1,10 @@
 import React from 'react';
-import Navbar from './Navbar';
+import NavbarComponent from './Navbar';
 
 export default {
-  title: 'Components/Button',
-  component: Navbar,
+  title: 'Components/Navbar',
+  component: NavbarComponent,
 };
 
-const Template = () => <Navbar />;
-export const Button = Template.bind({});
+const Template = () => <NavbarComponent />;
+export const Navbar = Template.bind({});
