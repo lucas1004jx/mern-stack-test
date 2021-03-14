@@ -10,13 +10,14 @@ const Form = ({ type }) => {
   return (
     <div>
       <div className={classes.inputArea}>
-        <TextField required id="standard-required" label="EMAIL" defaultValue="" />
+        <TextField required id="standard-required" label="EMAIL" defaultValue="" className={classes.input} />
         <TextField
           required
           id="standard-password-input"
           label="PASSWORD"
           type="password"
           autoComplete="current-password"
+          className={classes.input}
         />
         {type === 'signUp' && (
         <TextField
@@ -25,13 +26,14 @@ const Form = ({ type }) => {
           label="CONFIRM PASSWORD"
           type="password"
           autoComplete="current-password"
+          className={classes.input}
         />
         )}
       </div>
       {type === 'signIn' && (
       <div className={classes.buttonWrapper}>
         <Button variant="contained" color="primary" className={classes.button}>SUBMIT</Button>
-        <Button color="secondary" className={classes.button}>forget password</Button>
+        <Button size="small" color="secondary" className={classes.button}>forget password</Button>
 
       </div>
       )}
@@ -47,7 +49,7 @@ const Form = ({ type }) => {
 };
 
 Form.propTypes = {
-  type: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['signIn', 'signUp']).isRequired,
 };
 
 export default Form;

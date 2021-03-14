@@ -3,12 +3,12 @@ import TabsComponent from '../components/Tabs';
 
 const tabs = [
   {
-    label: 'LOGIN',
-    element: 'log in tab',
+    label: 'SIGN IN',
+    element: 'sign in tab',
   },
   {
-    label: 'SIGNIN',
-    element: 'sign in tab',
+    label: 'SIGN UP',
+    element: 'sign up tab',
   },
 ];
 export default {

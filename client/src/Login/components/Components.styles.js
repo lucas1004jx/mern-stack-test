@@ -5,9 +5,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
+  input: {
+    marginBottom: theme.spacing(2),
+  },
   buttonWrapper: {
     textAlign: 'right',
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(2),
   },
   button: {
     marginRight: theme.spacing(2),

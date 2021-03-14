@@ -55,11 +55,11 @@ const Tabs = ({ tabs }) => {
     <div className={classes.root}>
       <div position="static">
         <MaterialTabs value={value} onChange={handleChange} aria-label="tabs">
-          {tabs.map((tab) => <Tab label={tab.label} />)}
+          {tabs.map((tab) => <Tab label={tab.label} key={tab.label} />)}
         </MaterialTabs>
       </div>
       {tabs.map((tab, idx) => (
-        <TabPanel value={value} index={idx}>
+        <TabPanel value={value} index={idx} key={tab.label}>
           {tab.element}
         </TabPanel>
       ))}
