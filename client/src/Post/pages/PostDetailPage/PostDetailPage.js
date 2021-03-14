@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { fetchPost } from '../../PostActions';
 // Import Selectors
 
-export function PostDetailPage() {
+function PostDetailPage() {
   const { cuid } = useParams();
   const post = useSelector((state) => state.posts.data.find((currentPost) => (currentPost.cuid === cuid)));
   const dispatch = useDispatch();

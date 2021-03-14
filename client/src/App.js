@@ -5,10 +5,11 @@ import './App.css';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import PostListPage from './Post/pages/PostListPage/PostListPage';
-import { PostDetailPage } from './Post/pages/PostDetailPage/PostDetailPage';
+import PostDetailPage from './Post/pages/PostDetailPage/PostDetailPage';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './Nav/components/Navbar';
+import LoginPage from './Login/pages/LoginPage/LoginPage';
 
 const theme = createMuiTheme({
   palette: {
@@ -28,7 +29,8 @@ function App(props) {
           <Provider store={store}>
             <BrowserRouter>
               <Switch>
-                <Route path="/" exact component={PostListPage} />
+                <Route path="/" exact component={LoginPage} />
+                <Route path="/postList" exact component={PostListPage} />
                 <Route path="/posts/:cuid/:slug" exact component={PostDetailPage} />
               </Switch>
             </BrowserRouter>
