@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 // Import Components
+import { addPostRequest, deletePostRequest, fetchPosts } from 'util/Actions/PostActions';
+import Logo from 'logo.svg';
 import PostList from './components/PostList';
 import PostCreateWidget from './components/PostCreateWidget';
 // Import Actions
-import { addPostRequest, deletePostRequest, fetchPosts } from '../../util/Actions/PostActions';
-import Logo from '../../logo.svg';
 
 const PostListPage = ({ showAddPost }) => {
   const dispatch = useDispatch();

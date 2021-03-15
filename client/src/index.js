@@ -4,8 +4,8 @@ import {
   combineReducers, createStore, compose, applyMiddleware,
 } from 'redux';
 import thunk from 'redux-thunk';
-import posts from './util/Reducers/PostReducer';
-import user from './util/Reducers/UserReducer';
+import posts from 'util/Reducers/PostReducer';
+import user from 'util/Reducers/UserReducer';
 import './index.css';
 import App from './App';
 

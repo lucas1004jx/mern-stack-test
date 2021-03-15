@@ -4,12 +4,12 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import './App.css';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import PostListPage from './Pages/PostListPage/PostListPage';
-import PostDetailPage from './Pages/PostDetailPage/PostDetailPage';
+import PostListPage from 'Pages/PostListPage/PostListPage';
+import PostDetailPage from 'Pages/PostDetailPage/PostDetailPage';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './Components/Nav/Navbar';
-import LoginPage from './Pages/LogInPage/LoginPage';
+import Navbar from 'Components/Nav/Navbar';
+import LoginPage from 'Pages/LogInPage/LoginPage';
 
 const theme = createMuiTheme({
   palette: {

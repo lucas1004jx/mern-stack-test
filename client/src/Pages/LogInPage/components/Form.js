@@ -6,7 +6,7 @@ import {
 } from '@material-ui/core';
 
 import { useDispatch } from 'react-redux';
-import { signIn, signUp } from '../../../util/Actions/UserActions';
+import { signIn, signUp } from 'util/Actions/UserActions';
 import useStyles from './Components.styles';
 
 const Form = ({ type }) => {
