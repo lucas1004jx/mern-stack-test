@@ -15,11 +15,13 @@ const Form = ({ type }) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmedPassword, setComfirmedPassword] = useState('');
 
-  const handleSignUp = () => dispatch(signUp({ email, password }));
+  const handleSignUp = () => dispatch(signUp({ email, password, confirmedPassword }));
   const handleSignIn = () => dispatch(signIn({ email, password }));
 
   const handleSetPassword = (e) => setPassword(e.target.value);
+  const handleComfirmPassword = (e) => setComfirmedPassword(e.target.value);
   const handleSetEmail = (e) => setEmail(e.target.value);
 
   return (
@@ -43,6 +45,7 @@ const Form = ({ type }) => {
           type="password"
           autoComplete="current-password"
           className={classes.input}
+          onChange={handleComfirmPassword}
         />
         )}
       </div>

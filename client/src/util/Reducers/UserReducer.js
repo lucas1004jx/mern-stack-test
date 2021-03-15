@@ -10,7 +10,7 @@ const UserReducer = async (state = initialState, action) => {
     case SIGN_IN:
       await callApi('user/signin', 'post', {
         user: {
-          email: user?.name,
+          email: user?.email,
           password: user?.password,
         },
       });
@@ -19,8 +19,9 @@ const UserReducer = async (state = initialState, action) => {
     case SIGN_UP:
       await callApi('user/signup', 'post', {
         user: {
-          email: user?.name,
+          email: user?.email,
           password: user?.password,
+          confirmedPassword: user?.confirmedPassword,
         },
       });
       return state;
