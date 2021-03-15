@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+
 import {
   Tabs as MaterialTabs, Tab, Box,
 } from '@material-ui/core';
+
+import useStyles from './Tabs.styles';
 
 const TabPanel = (props) => {
   const {
@@ -35,13 +37,6 @@ TabPanel.propTypes = {
 TabPanel.defaultProps = {
   children: () => <div />,
 };
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
 
 const Tabs = ({ tabs }) => {
   const classes = useStyles();
