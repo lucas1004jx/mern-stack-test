@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginPageComponent from '../pages/LoginPage/LoginPage';
+import LoginPageComponent from '../LoginPage';
 
 export default {
   title: 'Pages/LogInPage',

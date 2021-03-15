@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 // Import Components
-import PostList from '../../components/PostList';
-import PostCreateWidget from '../../components/PostCreateWidget';
+import PostList from './components/PostList';
+import PostCreateWidget from './components/PostCreateWidget';
 // Import Actions
-import { addPostRequest, deletePostRequest, fetchPosts } from '../../PostActions';
-import Logo from '../../../logo.svg';
+import { addPostRequest, deletePostRequest, fetchPosts } from '../../util/Actions/PostActions';
+import Logo from '../../logo.svg';
 
 const PostListPage = ({ showAddPost }) => {
   const dispatch = useDispatch();
@@ -50,7 +50,11 @@ const PostListPage = ({ showAddPost }) => {
 };
 
 PostListPage.propTypes = {
-  showAddPost: PropTypes.bool.isRequired,
+  showAddPost: PropTypes.bool,
+};
+
+PostListPage.defaultProps = {
+  showAddPost: true,
 };
 
 export default PostListPage;

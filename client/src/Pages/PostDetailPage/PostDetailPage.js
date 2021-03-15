@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // Import Actions
 import { useParams } from 'react-router-dom';
-import { fetchPost } from '../../PostActions';
+import { fetchPost } from '../../util/Actions/PostActions';
 // Import Selectors
 
 function PostDetailPage() {

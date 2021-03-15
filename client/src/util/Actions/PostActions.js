@@ -1,4 +1,4 @@
-import callApi from '../util/apiCaller';
+import callApi from '../apiCaller';
 
 // Export Constants
 export const ADD_POST = 'ADD_POST';

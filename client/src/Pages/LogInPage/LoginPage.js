@@ -1,8 +1,8 @@
 import React from 'react';
 import { Paper } from '@material-ui/core';
 
-import Tabs from '../../components/Tabs';
-import Form from '../../components/Form';
+import Tabs from '../../Components/Tabs/Tabs';
+import Form from './components/Form';
 
 import useStyles from './LoginPage.styles';
 
