@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  Tabs as MaterialTabs, Tab, Typography, Box,
+  Tabs as MaterialTabs, Tab, Box,
 } from '@material-ui/core';
 
 const TabPanel = (props) => {
@@ -18,7 +18,7 @@ const TabPanel = (props) => {
     >
       {value === index && (
         <Box p={3}>
-          <Typography>{children}</Typography>
+          {children}
         </Box>
       )}
     </div>
@@ -58,9 +58,9 @@ const Tabs = ({ tabs }) => {
           {tabs.map((tab) => <Tab label={tab.label} key={tab.label} />)}
         </MaterialTabs>
       </div>
-      {tabs.map((tab, idx) => (
-        <TabPanel value={value} index={idx} key={tab.label}>
-          {tab.element}
+      {tabs.map(({ label, element }, idx) => (
+        <TabPanel value={value} index={idx} key={label} label={label}>
+          {element}
         </TabPanel>
       ))}
     </div>

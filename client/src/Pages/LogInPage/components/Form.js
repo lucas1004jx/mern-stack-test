@@ -8,7 +8,7 @@ import useStyles from './Components.styles';
 const Form = ({ type }) => {
   const classes = useStyles();
   return (
-    <div>
+    <>
       <div className={classes.inputArea}>
         <TextField required id="standard-required" label="EMAIL" defaultValue="" className={classes.input} />
         <TextField
@@ -44,7 +44,7 @@ const Form = ({ type }) => {
       </div>
       )}
 
-    </div>
+    </>
   );
 };
 
