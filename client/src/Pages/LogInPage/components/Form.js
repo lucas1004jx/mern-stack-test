@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   TextField, Button,
 } from '@material-ui/core';
 
-import { useDispatch } from 'react-redux';
-import { userSignIn, userSignUp } from 'util/Actions/UserActions';
+import { userSignIn, userSignUp } from 'util/Actions/UiActions';
 import ErrorInfo from './ErrorInfo';
 import useStyles from './Components.styles';
 
@@ -17,12 +18,18 @@ const Form = ({ type }) => {
   const [password, setPassword] = useState('');
   const [confirmedPassword, setComfirmedPassword] = useState('');
 
+  const props = useSelector((state) => state);
+  const { redirectUrl } = useSelector((state) => state.ui);
+  console.log('props----', props);
+
   const handleSignUp = () => dispatch(userSignUp({ email, password, confirmedPassword }));
   const handleSignIn = () => dispatch(userSignIn({ email, password }));
 
   const handleSetPassword = (e) => setPassword(e.target.value);
   const handleComfirmPassword = (e) => setComfirmedPassword(e.target.value);
   const handleSetEmail = (e) => setEmail(e.target.value);
+  console.log('redicretUrl', redirectUrl);
+  if (redirectUrl) return <Redirect to={redirectUrl} />;
 
   return (
     <>

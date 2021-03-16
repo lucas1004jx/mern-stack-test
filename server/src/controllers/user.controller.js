@@ -1,3 +1,4 @@
+const user = require('../models/user');
 const User = require('../models/user');
 
 const userSignIn = (req,res) => {
@@ -21,11 +22,18 @@ const userSignUp = async (req,res) => {
 		return res.status(400).send({ message: errors.join() });
 	}
 
+	const userEmail = await user.findOne({email:email});
+
+	if(userEmail){
+		return res.status(409).send({message:'User already exists'});
+	}
+
 	const newUser = new User({ email, password});
 	
 	newUser.password = await newUser.encryptPassword(password);
 	await newUser.save();
-	res.status(200).send(newUser);
+	
+	res.status(200).send({email});
 };
 
 module.exports = {

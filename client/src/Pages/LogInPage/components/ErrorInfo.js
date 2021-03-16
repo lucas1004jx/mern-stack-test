@@ -8,9 +8,9 @@ import useStyles from './Components.styles';
 
 const ErrorInfo = ({ type }) => {
   const classes = useStyles();
-  const user = useSelector((state) => state.user);
+  const ui = useSelector((state) => state.ui);
 
-  const { signInError, signUpError } = user;
+  const { signInError, signUpError } = ui;
   if (!signInError && !signUpError) return <div />;
   return (
     <div className={classes.errorWrapper}>
