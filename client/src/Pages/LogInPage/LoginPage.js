@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Paper } from '@material-ui/core';
 
 import Tabs from 'Components/Tabs/Tabs';
@@ -19,12 +20,14 @@ const tabs = [
 
 const LoginPage = () => {
   const classes = useStyles();
+  const user = useSelector((state) => state.user);
+  console.log('LoginPage user', user);
+
   return (
     <div className={classes.root}>
       <Paper className={classes.formWrapper}>
         <Tabs tabs={tabs} />
       </Paper>
-
     </div>
   );
 };
