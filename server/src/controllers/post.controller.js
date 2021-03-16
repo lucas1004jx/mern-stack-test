@@ -9,13 +9,13 @@ const sanitizeHtml = require('sanitize-html');
  * @param res
  * @returns void
  */
-getPosts = async (req, res) => {
-  Post.find().sort('-dateAdded').exec((err, posts) => {
-    if (err) {
-      res.status(500).send(err);
-    }
-    res.json({ posts });
-  });
+const getPosts = async (req, res) => {
+	Post.find().sort('-dateAdded').exec((err, posts) => {
+		if (err) {
+			res.status(500).send(err);
+		}
+		res.json({ posts });
+	});
 };
 
 /**
@@ -24,26 +24,26 @@ getPosts = async (req, res) => {
  * @param res
  * @returns void
  */
-addPost = async (req, res) => {
-  if (!req.body.post.name || !req.body.post.title || !req.body.post.content) {
-    res.status(403).end();
-  }
+const addPost = async (req, res) => {
+	if (!req.body.post.name || !req.body.post.title || !req.body.post.content) {
+		res.status(403).end();
+	}
 
-  const newPost = new Post(req.body.post);
+	const newPost = new Post(req.body.post);
 
-  // Let's sanitize inputs
-  newPost.title = sanitizeHtml(newPost.title);
-  newPost.name = sanitizeHtml(newPost.name);
-  newPost.content = sanitizeHtml(newPost.content);
+	// Let's sanitize inputs
+	newPost.title = sanitizeHtml(newPost.title);
+	newPost.name = sanitizeHtml(newPost.name);
+	newPost.content = sanitizeHtml(newPost.content);
 
-  newPost.slug = slug(newPost.title.toLowerCase(), { lowercase: true });
-  newPost.cuid = cuid();
-  newPost.save((err, saved) => {
-    if (err) {
-      res.status(500).send(err);
-    }
-    res.json({ post: saved });
-  });
+	newPost.slug = slug(newPost.title.toLowerCase(), { lowercase: true });
+	newPost.cuid = cuid();
+	newPost.save((err, saved) => {
+		if (err) {
+			res.status(500).send(err);
+		}
+		res.json({ post: saved });
+	});
 };
 
 /**
@@ -52,13 +52,13 @@ addPost = async (req, res) => {
  * @param res
  * @returns void
  */
-getPost = async (req, res) => {
-  Post.findOne({ cuid: req.params.cuid }).exec((err, post) => {
-    if (err) {
-      res.status(500).send(err);
-    }
-    res.json({ post });
-  });
+const getPost = async (req, res) => {
+	Post.findOne({ cuid: req.params.cuid }).exec((err, post) => {
+		if (err) {
+			res.status(500).send(err);
+		}
+		res.json({ post });
+	});
 };
 
 /**
@@ -67,21 +67,21 @@ getPost = async (req, res) => {
  * @param res
  * @returns void
  */
-deletePost = async (req, res) => {
-  Post.findOne({ cuid: req.params.cuid }).exec((err, post) => {
-    if (err) {
-      res.status(500).send(err);
-    }
+const deletePost = async (req, res) => {
+	Post.findOne({ cuid: req.params.cuid }).exec((err, post) => {
+		if (err) {
+			res.status(500).send(err);
+		}
 
-    post.remove(() => {
-      res.status(200).end();
-    });
-  });
+		post.remove(() => {
+			res.status(200).end();
+		});
+	});
 };
 
 module.exports = {
-  getPosts,
-  addPost,
-  getPost,
-  deletePost
+	getPosts,
+	addPost,
+	getPost,
+	deletePost
 };
