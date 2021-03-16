@@ -12,10 +12,11 @@ export default async (endpoint, method = 'get', body) => fetch(`${API_URL}/${end
     if (!response.ok) {
       return Promise.reject(json);
     }
-
     return json;
   })
   .then(
     (response) => response,
-    (error) => error,
+    (error) => {
+      throw error;
+    },
   );

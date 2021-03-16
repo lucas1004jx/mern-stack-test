@@ -11,7 +11,6 @@ import PostCreateWidget from './components/PostCreateWidget';
 const PostListPage = ({ showAddPost }) => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts.data);
-
   useEffect(() => {
     dispatch(fetchPosts());
   }, []);

@@ -5,6 +5,9 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'center',
   },
+  formWrapper: {
+    width: 400,
+  },
 }));
 
 export default useStyles;

@@ -6,19 +6,19 @@ import {
 } from '@material-ui/core';
 
 import { useDispatch } from 'react-redux';
-import { signIn, signUp } from 'util/Actions/UserActions';
+import { userSignIn, userSignUp } from 'util/Actions/UserActions';
+import ErrorInfo from './ErrorInfo';
 import useStyles from './Components.styles';
 
 const Form = ({ type }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmedPassword, setComfirmedPassword] = useState('');
 
-  const handleSignUp = () => dispatch(signUp({ email, password, confirmedPassword }));
-  const handleSignIn = () => dispatch(signIn({ email, password }));
+  const handleSignUp = () => dispatch(userSignUp({ email, password, confirmedPassword }));
+  const handleSignIn = () => dispatch(userSignIn({ email, password }));
 
   const handleSetPassword = (e) => setPassword(e.target.value);
   const handleComfirmPassword = (e) => setComfirmedPassword(e.target.value);
@@ -26,6 +26,7 @@ const Form = ({ type }) => {
 
   return (
     <>
+      <ErrorInfo type={type} />
       <div className={classes.inputArea}>
         <TextField required id="standard-required" label="EMAIL" defaultValue="" className={classes.input} onChange={handleSetEmail} />
         <TextField

@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
   button: {
     marginRight: theme.spacing(2),
   },
+  errorWrapper: {
+    marginBottom: theme.spacing(2),
+  },
 }));
 
 export default useStyles;

@@ -1,4 +1,4 @@
-import { ADD_POST, ADD_POSTS, DELETE_POST } from '../Actions/PostActions';
+import { ADD_POST, ADD_POSTS, DELETE_POST } from 'util/Actions/PostActions';
 
 // Initial State
 const initialState = { data: [] };

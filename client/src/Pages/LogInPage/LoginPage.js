@@ -21,7 +21,7 @@ const LoginPage = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Paper>
+      <Paper className={classes.formWrapper}>
         <Tabs tabs={tabs} />
       </Paper>
 

@@ -1,30 +1,24 @@
-import callApi from '../apiCaller';
-import { SIGN_IN, SIGN_UP } from '../Actions/UserActions';
+import {
+  SIGN_IN_SUCCESSED, SIGN_IN_FAILED, SIGN_UP_SUCCESSED, SIGN_UP_FAILED,
+} from '../Actions/UserActions';
 
 // Initial State
-const initialState = { data: [] };
+const initialState = {};
 
-const UserReducer = async (state = initialState, action) => {
-  const { type, user } = action;
+const UserReducer = (state = initialState, action) => {
+  const { type, user, error } = action;
   switch (type) {
-    case SIGN_IN:
-      await callApi('user/signin', 'post', {
-        user: {
-          email: user?.email,
-          password: user?.password,
-        },
-      });
-      return state;
+    case SIGN_IN_SUCCESSED:
+      return user;
 
-    case SIGN_UP:
-      await callApi('user/signup', 'post', {
-        user: {
-          email: user?.email,
-          password: user?.password,
-          confirmedPassword: user?.confirmedPassword,
-        },
-      });
-      return state;
+    case SIGN_IN_FAILED:
+      return { ...state, signInerror: error };
+
+    case SIGN_UP_SUCCESSED:
+      return user;
+
+    case SIGN_UP_FAILED:
+      return { ...state, signUpError: error };
 
     default:
       return state;
