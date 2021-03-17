@@ -67,8 +67,6 @@ const Form = ({ type }) => {
         >
           SUBMIT
         </Button>
-        <Button size="small" color="secondary" className={classes.button}>forget password</Button>
-
       </div>
       )}
 
