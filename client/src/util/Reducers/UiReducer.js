@@ -12,7 +12,7 @@ const UiReducer = (state = initialState, action) => {
       return { redirectUrl };
 
     case SIGN_IN_FAILED:
-      return { ...state, signInerror: error };
+      return { ...state, signInError: error };
 
     case SIGN_UP_SUCCESSED:
       return { redirectUrl };

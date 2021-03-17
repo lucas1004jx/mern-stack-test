@@ -11,6 +11,7 @@ const ErrorInfo = ({ type }) => {
   const ui = useSelector((state) => state.ui);
 
   const { signInError, signUpError } = ui;
+
   if (!signInError && !signUpError) return <div />;
   return (
     <div className={classes.errorWrapper}>

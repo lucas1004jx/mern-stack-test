@@ -32,11 +32,9 @@ export const signUpFailed = (error) => ({
 export const userSignUp = ({ email, password, confirmedPassword }) => async (dispatch) => {
   try {
     const user = await callApi('user/signup', 'post', {
-      user: {
-        email,
-        password,
-        confirmedPassword,
-      },
+      email,
+      password,
+      confirmedPassword,
     });
     console.log('sign up success---', user);
     dispatch(signUpSuccessed(REDICRECT_URL));
@@ -50,10 +48,8 @@ export const userSignUp = ({ email, password, confirmedPassword }) => async (dis
 export const userSignIn = ({ email, password }) => async (dispatch) => {
   try {
     const user = await callApi('user/signin', 'post', {
-      user: {
-        email,
-        password,
-      },
+      email,
+      password,
     });
     console.log('sign in success');
     dispatch(signInSuccessed(REDICRECT_URL));
