@@ -12,11 +12,14 @@ const ErrorInfo = ({ type }) => {
 
   const { signInError, signUpError } = ui;
 
+  const displayMessage = (messages) => (Array.isArray(messages) ? messages.map((msg) => <Typography variant="body1" key={msg}>{msg}</Typography>) : <Typography variant="body1">{messages}</Typography>);
+
   if (!signInError && !signUpError) return <div />;
+
   return (
     <div className={classes.errorWrapper}>
-      {type === 'signIn' && signInError && <Typography variant="body1">{signInError}</Typography>}
-      {type === 'signUp' && signUpError && <Typography variant="body1">{signUpError}</Typography>}
+      {type === 'signIn' && signInError && displayMessage(signInError)}
+      {type === 'signUp' && signUpError && displayMessage(signUpError)}
     </div>
   );
 };

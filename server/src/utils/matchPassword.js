@@ -4,6 +4,4 @@ const matchPassword = async (inComingPassword,passwordInDb) => {
 	return await bcrypt.compare(inComingPassword,passwordInDb);
 };
 
-module.exports = {
-	matchPassword
-};
+module.exports = matchPassword;
