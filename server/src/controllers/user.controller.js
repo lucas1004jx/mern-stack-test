@@ -17,7 +17,11 @@ const userSignIn = async (req,res) => {
 	
 	console.log('user',user);
 
-	const jwt_payload = {id:user._id,email:user.email};
+	const jwt_payload = {
+		id:user._id,
+		email:user.email,
+		dateAdded:user.dateAdded
+	};
 	// sign token
 	jwt.sign(
 		jwt_payload,
@@ -25,8 +29,7 @@ const userSignIn = async (req,res) => {
 		{expiresIn:3600},
 		(err,token)=>{
 			res.status(200).json({
-				success:true,
-				token: `Bearer ${token}`
+				token
 			});
 		});
 	
@@ -50,6 +53,7 @@ const userSignUp = async (req,res) => {
 
 const getCurrentUser = (req,res) => {
 	const {email,dateAdded} = req.user;
+	console.log('getCurrentUser',email);
 	res.status(200).json({
 		email,
 		dateAdded

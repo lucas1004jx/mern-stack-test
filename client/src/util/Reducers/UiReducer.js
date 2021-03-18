@@ -1,24 +1,18 @@
 import {
-  SIGN_IN_SUCCESSED, SIGN_IN_FAILED, SIGN_UP_SUCCESSED, SIGN_UP_FAILED,
+  FETCHING_START,
+  FETCHING_END,
 } from '../Actions/UiActions';
 
 // Initial State
 const initialState = {};
 
 const UiReducer = (state = initialState, action) => {
-  const { type, redirectUrl, error } = action;
+  const { type } = action;
   switch (type) {
-    case SIGN_IN_SUCCESSED:
-      return { redirectUrl };
-
-    case SIGN_IN_FAILED:
-      return { ...state, signInError: error };
-
-    case SIGN_UP_SUCCESSED:
-      return { redirectUrl };
-
-    case SIGN_UP_FAILED:
-      return { ...state, signUpError: error };
+    case FETCHING_START:
+      return { ...state, loading: true };
+    case FETCHING_END:
+      return { ...state, loading: false };
 
     default:
       return state;

@@ -8,6 +8,7 @@ import { fetchPost } from 'util/Actions/PostActions';
 function PostDetailPage() {
   const { cuid } = useParams();
   const post = useSelector((state) => state.posts.data.find((currentPost) => (currentPost.cuid === cuid)));
+
   const dispatch = useDispatch();
 
   useEffect(() => {

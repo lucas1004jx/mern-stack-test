@@ -1,5 +1,7 @@
 import callApi from 'util/apiCaller';
 
+import { FETCHING_START, FETCHING_END } from './UiActions';
+
 // Export Constants
 export const ADD_POST = 'ADD_POST';
 export const ADD_POSTS = 'ADD_POSTS';
@@ -13,15 +15,23 @@ export function addPost(post) {
   };
 }
 
-export function addPostRequest(post) {
-  return (dispatch) => callApi('api/posts', 'post', {
-    post: {
-      name: post.name,
-      title: post.title,
-      content: post.content,
-    },
-  }).then((res) => dispatch(addPost(res.post)));
-}
+export const addPostRequest = (post) => async (dispatch) => {
+  dispatch({ type: FETCHING_START });
+  try {
+    const res = await callApi('api/posts', 'post', {
+      post: {
+        name: post.name,
+        title: post.title,
+        content: post.content,
+      },
+    });
+
+    dispatch(addPost(res.post));
+    dispatch({ type: FETCHING_END });
+  } catch (error) {
+    dispatch({ type: FETCHING_END });
+  }
+};
 
 export function addPosts(posts) {
   return {
@@ -30,15 +40,33 @@ export function addPosts(posts) {
   };
 }
 
-export function fetchPosts() {
-  return (dispatch) => callApi('api/posts').then((res) => {
+export const fetchPosts = () => async (dispatch) => {
+  try {
+    dispatch({ type: FETCHING_START });
+    const res = await callApi('api/posts');
     dispatch(addPosts(res.posts));
-  });
-}
+    dispatch({ type: FETCHING_END });
+  } catch (error) {
+    dispatch({ type: FETCHING_END });
+  }
+};
 
-export function fetchPost(cuid) {
-  return (dispatch) => callApi(`api/posts/${cuid}`).then((res) => dispatch(addPost(res.post)));
-}
+// export function fetchPosts() {
+//   return (dispatch) => callApi('api/posts').then((res) => {
+//     dispatch(addPosts(res.posts));
+//   });
+// }
+
+export const fetchPost = (cuid) => async (dispatch) => {
+  try {
+    dispatch({ type: FETCHING_START });
+    const res = await callApi(`api/posts/${cuid}`);
+    dispatch(addPost(res.post));
+    dispatch({ type: FETCHING_END });
+  } catch (error) {
+    dispatch({ type: FETCHING_END });
+  }
+};
 
 export function deletePost(cuid) {
   return {
@@ -47,6 +75,13 @@ export function deletePost(cuid) {
   };
 }
 
-export function deletePostRequest(cuid) {
-  return (dispatch) => callApi(`api/posts/${cuid}`, 'delete').then(() => dispatch(deletePost(cuid)));
-}
+export const deletePostRequest = (cuid) => async (dispatch) => {
+  try {
+    dispatch({ type: FETCHING_START });
+    await callApi(`api/posts/${cuid}`, 'delete');
+    dispatch(deletePost(cuid));
+    dispatch({ type: FETCHING_END });
+  } catch (error) {
+    dispatch({ type: FETCHING_END });
+  }
+};

@@ -7,7 +7,7 @@ import {
   TextField, Button,
 } from '@material-ui/core';
 
-import { userSignIn, userSignUp } from 'util/Actions/UiActions';
+import { userSignIn, userSignUp } from 'util/Actions/AuthActions';
 import ErrorInfo from './ErrorInfo';
 import useStyles from './Components.styles';
 
@@ -28,7 +28,7 @@ const Form = ({ type }) => {
   const handleSetPassword = (e) => setPassword(e.target.value);
   const handleComfirmPassword = (e) => setComfirmedPassword(e.target.value);
   const handleSetEmail = (e) => setEmail(e.target.value);
-  console.log('redicretUrl', redirectUrl);
+
   if (redirectUrl) return <Redirect to={redirectUrl} />;
 
   return (

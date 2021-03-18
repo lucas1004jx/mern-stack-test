@@ -14,7 +14,8 @@ const PostListPage = ({ showAddPost }) => {
   useEffect(() => {
     dispatch(fetchPosts());
   }, []);
-
+  const test = useSelector((state) => state);
+  console.log('PostDetailPage state----', test);
   const handleDeletePost = (post) => {
     if (confirm('Do you want to delete this post')) { // eslint-disable-line
       dispatch(deletePostRequest(post));

@@ -2,8 +2,13 @@ import fetch from 'isomorphic-fetch';
 
 export const API_URL = 'http://localhost:3000';
 
+const token = localStorage.getItem('jwt') || '';
+
 export default async (endpoint, method = 'get', body) => fetch(`${API_URL}/${endpoint}`, {
-  headers: { 'content-type': 'application/json' },
+  headers: {
+    'content-type': 'application/json',
+    Authorization: `Bearer ${token}`,
+  },
   method,
   body: JSON.stringify(body),
 })

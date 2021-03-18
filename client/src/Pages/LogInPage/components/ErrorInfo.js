@@ -12,7 +12,24 @@ const ErrorInfo = ({ type }) => {
 
   const { signInError, signUpError } = ui;
 
-  const displayMessage = (messages) => (Array.isArray(messages) ? messages.map((msg) => <Typography variant="body1" key={msg}>{msg}</Typography>) : <Typography variant="body1">{messages}</Typography>);
+  const displayMessage = (messages) => (Array.isArray(messages)
+    ? messages.map((msg) => (
+      <Typography
+        variant="body1"
+        key={msg}
+        className={classes.errorMsg}
+      >
+        {msg}
+      </Typography>
+    ))
+    : (
+      <Typography
+        variant="body1"
+        className={classes.errorMsg}
+      >
+        {messages}
+      </Typography>
+    ));
 
   if (!signInError && !signUpError) return <div />;
 

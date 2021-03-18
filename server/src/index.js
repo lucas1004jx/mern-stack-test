@@ -5,7 +5,8 @@ const app = express();
 const apiPort = 3000;
 const db = require('./db');
 const posts = require('./routes/post.routes');
-const users = require('./routes/user.routes');
+const user = require('./routes/user.routes');
+const auth = require('./routes/auth.routes');
 const passport = require('passport');
 
 app.use(express.urlencoded({ extended: true }));
@@ -18,9 +19,10 @@ app.use(passport.initialize());
 //passport config
 require('./config/passport')(passport);
 
-
+app.use('/auth', auth);
 app.use('/api',passport.authenticate('jwt',{session:false}), posts);
-app.use('/user', users);
+app.use('/user', passport.authenticate('jwt',{session:false}),user);
+
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
