@@ -1,5 +1,5 @@
 import React from 'react';
-import FormComponent from '../components/LoginForm';
+import FormComponent from '../components/SignUpForm';
 
 export default {
   title: 'Components/Form',

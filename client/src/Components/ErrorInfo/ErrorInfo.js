@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useSelector } from 'react-redux';
+import { useSelectedState } from 'hooks';
 import { Typography } from '@material-ui/core';
 
-import useStyles from './Components.styles';
+import useStyles from './ErrorInfo.styles';
 
 const ErrorInfo = ({ type }) => {
   const classes = useStyles();
-  const ui = useSelector((state) => state.ui);
+  const auth = useSelectedState('auth');
 
-  const { signInError, signUpError } = ui;
+  const { signInError, signUpError } = auth;
 
   const displayMessage = (messages) => (Array.isArray(messages)
     ? messages.map((msg) => (

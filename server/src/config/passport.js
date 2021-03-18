@@ -18,7 +18,8 @@ const strategy = new JwtStrategy(options,async (jwt_payload, done)=>{
 		if(!user) return done(null,false,{message:'No user found'});
 		return done(null,user);
 	} catch (error) {
-		done(error);
+		console.log('strategy--->',error);
+		done(error,null,{message:'authentication error'});
 	}	
 	
 });

@@ -1,9 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
+
   },
+
 }));
 
 export default useStyles;

@@ -2,9 +2,9 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { useSelectedState } from 'hooks';
 import { Paper } from '@material-ui/core';
-import LoginForm from './components/LoginForm';
+import SignUpForm from './components/SignUpForm';
 
-import useStyles from './LoginPage.styles';
+import useStyles from './SignUpPage.styles';
 
 const LoginPage = () => {
   const classes = useStyles();
@@ -13,7 +13,7 @@ const LoginPage = () => {
   return (
     <div className={classes.root}>
       <Paper className={classes.formWrapper}>
-        <LoginForm type="signIn" />
+        <SignUpForm />
       </Paper>
     </div>
   );

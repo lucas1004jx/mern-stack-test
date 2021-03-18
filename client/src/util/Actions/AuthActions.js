@@ -9,7 +9,8 @@ export const SIGN_IN_SUCCESSED = 'SIGN_IN_SUCCESSED';
 export const SIGN_IN_FAILED = 'SIGN_IN_FAILED';
 export const AUTHENTICATION_FAIL = 'AUTHENTICATION_FAIL';
 
-const REDICRECT_URL = '/postList';
+const POST_LIST_URL = '/postList';
+const SIGNIN_URL = '/login';
 
 export const signInSuccessed = (url) => ({
   type: SIGN_IN_SUCCESSED,
@@ -39,7 +40,7 @@ export const userSignUp = ({ email, password, confirmedPassword }) => async (dis
       confirmedPassword,
     });
     console.log('sign up success---', user);
-    dispatch(signUpSuccessed(REDICRECT_URL));
+    dispatch(signUpSuccessed(SIGNIN_URL));
     dispatch(saveUser(user));
   } catch (error) {
     console.log('sign up error----', error.message);
@@ -53,13 +54,13 @@ export const userSignIn = ({ email, password }) => async (dispatch) => {
       email,
       password,
     });
-    console.log('sign in success', token);
+    console.log('sign in success token', token);
 
     localStorage.setItem('jwt', token);
     const user = jwtDecode(token);
-    console.log('sign in success', user);
+    console.log('sign in success user', user);
 
-    dispatch(signInSuccessed(REDICRECT_URL));
+    dispatch(signInSuccessed(POST_LIST_URL));
     dispatch(saveUser({ email: user.email }));
   } catch (error) {
     console.log('sign in error', error.message);

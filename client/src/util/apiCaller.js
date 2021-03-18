@@ -22,6 +22,7 @@ export default async (endpoint, method = 'get', body) => fetch(`${API_URL}/${end
   .then(
     (response) => response,
     (error) => {
+      console.log('api call error---->', error);
       throw error;
     },
   );
