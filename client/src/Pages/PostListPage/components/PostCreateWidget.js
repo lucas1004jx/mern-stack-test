@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import fetch from 'isomorphic-fetch';
 import PropTypes from 'prop-types';
-import { useSelectedState } from 'hooks';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -16,10 +16,11 @@ const useStyles = makeStyles((theme) => ({
 
 const PostCreateWidget = ({ addPost }) => {
   const [state, setState] = useState({});
+  const [loading, setLoading] = useState(false);
   const classes = useStyles();
-  const user = useSelectedState('user');
+
   const submit = () => {
-    if (state.name && state.title && state.content) {
+    if (state.name && state.title && state.content && !loading) {
       addPost(state);
     }
   };
@@ -32,13 +33,39 @@ const PostCreateWidget = ({ addPost }) => {
     });
   };
 
+  const handleUpload = async (e) => {
+    const source = e.target.files[0];
+    const data = new FormData();
+    data.append('file', source);
+    data.append('upload_preset', 'alayaimages');
+
+    setLoading(true);
+    const res = await fetch('https://api.cloudinary.com/v1_1/dup7efxhj/image/upload', {
+      method: 'POST',
+      body: data,
+    });
+
+    const file = await res.json();
+
+    setState({
+      ...state,
+      media: file.secure_url,
+    });
+    setLoading(false);
+  };
+
+  const submitButtonDisabledCondition = !state.name || !state.title || !state.content || loading;
+
   return (
     <div className={`${classes.root} d-flex flex-column my-4 w-100`}>
-      <h3>Create new post</h3>
-      <TextField variant="filled" label="Author name" name="name" onChange={handleChange} defaultValue={user.email} />
+      <h3>
+        Create new post
+      </h3>
+      <TextField variant="filled" label="Author name" name="name" onChange={handleChange} />
       <TextField variant="filled" label="Post title" name="title" onChange={handleChange} />
       <TextField variant="filled" multiline rows="4" label="Post content" name="content" onChange={handleChange} />
-      <Button className="mt-4" variant="contained" color="primary" onClick={() => submit()} disabled={!state.name || !state.title || !state.content}>
+      <TextField type="file" name="file" placeholder="upload an image" onChange={handleUpload} />
+      <Button className="mt-4" variant="contained" color="primary" onClick={() => submit()} disabled={submitButtonDisabledCondition}>
         Submit
       </Button>
     </div>

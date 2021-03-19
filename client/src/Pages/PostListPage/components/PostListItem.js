@@ -6,8 +6,10 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
+import useStyles from './Componentes.styles';
 
 function PostListItem({ post, onDelete }) {
+  const classes = useStyles();
   const {
     title, content, name, cuid, slug,
   } = post;
@@ -22,6 +24,9 @@ function PostListItem({ post, onDelete }) {
         <Typography component="p" className="mt-3">
           {content}
         </Typography>
+        <figure className={classes.imgWrapper}>
+          <img src={post.media} alt="media" />
+        </figure>
         <Typography color="textSecondary" component="p" className="mt-3 font-italic">
           From
           {' '}
@@ -44,6 +49,7 @@ PostListItem.propTypes = {
     content: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
     cuid: PropTypes.string.isRequired,
+    media: PropTypes.string,
   }).isRequired,
   onDelete: PropTypes.func.isRequired,
 };

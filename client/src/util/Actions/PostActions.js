@@ -23,6 +23,7 @@ export const addPostRequest = (post) => async (dispatch) => {
         name: post.name,
         title: post.title,
         content: post.content,
+        media: post.media,
       },
     });
 
@@ -34,6 +35,7 @@ export const addPostRequest = (post) => async (dispatch) => {
 };
 
 export function addPosts(posts) {
+  console.log('addPosts', addPosts);
   return {
     type: ADD_POSTS,
     posts,
@@ -50,12 +52,6 @@ export const fetchPosts = () => async (dispatch) => {
     dispatch({ type: FETCHING_END });
   }
 };
-
-// export function fetchPosts() {
-//   return (dispatch) => callApi('api/posts').then((res) => {
-//     dispatch(addPosts(res.posts));
-//   });
-// }
 
 export const fetchPost = (cuid) => async (dispatch) => {
   try {

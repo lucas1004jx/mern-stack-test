@@ -32,20 +32,23 @@ const addPost = async (req, res) => {
 	}
 	const user= req.user;
 	const newPost = new Post(req.body.post);
-	newPost.user= user.email;
+	
 	// Let's sanitize inputs
+	newPost.user= user.email;
 	newPost.title = sanitizeHtml(newPost.title);
 	newPost.name = sanitizeHtml(newPost.name);
 	newPost.content = sanitizeHtml(newPost.content);
 
 	newPost.slug = slug(newPost.title.toLowerCase(), { lowercase: true });
 	newPost.cuid = cuid();
+	console.log('newPost--->,',newPost);
 	newPost.save((err, saved) => {
 		if (err) {
 			res.status(500).send(err);
 		}
 		res.json({ post: saved });
 	});
+
 };
 
 /**
