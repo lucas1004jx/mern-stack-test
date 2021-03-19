@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Paper } from '@material-ui/core';
+import { Paper, Typography } from '@material-ui/core';
 import { useSelectedState } from 'hooks';
 import LoginForm from './components/LoginForm';
 
@@ -18,6 +18,10 @@ const LoginPage = () => {
   return (
     <div className={classes.root}>
       <Paper className={classes.formWrapper}>
+        <div className={classes.title}>
+          <img src="images/logo.svg" alt="logo" />
+          <Typography variant="h6">Sign In</Typography>
+        </div>
         <LoginForm type="signIn" />
       </Paper>
     </div>

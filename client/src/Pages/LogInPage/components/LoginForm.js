@@ -49,7 +49,6 @@ const LoginForm = () => {
           SUBMIT
         </Button>
       </div>
-
     </>
   );
 };

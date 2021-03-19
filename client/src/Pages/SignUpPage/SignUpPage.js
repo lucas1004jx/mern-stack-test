@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelectedState } from 'hooks';
-import { Paper } from '@material-ui/core';
+import { Paper, Typography } from '@material-ui/core';
 import SignUpForm from './components/SignUpForm';
 
 import useStyles from './SignUpPage.styles';
@@ -18,6 +18,10 @@ const SignUpPage = () => {
   return (
     <div className={classes.root}>
       <Paper className={classes.formWrapper}>
+        <div className={classes.title}>
+          <img src="images/logo.svg" alt="logo" />
+          <Typography variant="h6">Sign Up</Typography>
+        </div>
         <SignUpForm />
       </Paper>
     </div>
