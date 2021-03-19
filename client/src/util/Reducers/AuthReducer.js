@@ -1,3 +1,4 @@
+import { SAVE_USER } from 'util/Actions/UserActions';
 import {
   SIGN_IN_SUCCESSED,
   SIGN_IN_FAILED,
@@ -14,7 +15,8 @@ const AuthReducer = (state = initialState, action) => {
   switch (type) {
     case SIGN_IN_SUCCESSED:
       return { ...state, authenticated: true };
-
+    case SAVE_USER:
+      return { ...state, authenticated: true };
     case SIGN_IN_FAILED:
       return { ...state, signInError: error, authenticated: false };
 

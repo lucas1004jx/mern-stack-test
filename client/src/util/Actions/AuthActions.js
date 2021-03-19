@@ -73,8 +73,8 @@ export const userSignIn = ({ email, password }, history) => async (dispatch) => 
   }
 };
 
-export const userLogOut = (history) => (dispath) => {
+export const userLogOut = () => (dispath) => {
   dispath(logOuSuccess());
   localStorage.removeItem('jwt');
-  history.push(HOME);
+  window.location.href = HOME;
 };

@@ -4,7 +4,9 @@ import jwtDecode from 'jwt-decode';
 import { saveUser } from 'util/Actions/UserActions';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import './App.css';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import {
+  Route, BrowserRouter, Switch,
+} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { Layout, PrivateRoute } from 'Components';
 import {
@@ -23,10 +25,10 @@ const theme = createMuiTheme({
 
 function App(props) {
   const { store } = props;
-
   if (localStorage.jwt) {
     const user = jwtDecode(localStorage.jwt);
     store.dispatch(saveUser(user));
+    console.log('user', user);
   }
 
   return (
