@@ -7,14 +7,14 @@ export const SIGN_UP_FAILED = 'SIGN_UP_FAILED';
 
 export const SIGN_IN_SUCCESSED = 'SIGN_IN_SUCCESSED';
 export const SIGN_IN_FAILED = 'SIGN_IN_FAILED';
-export const AUTHENTICATION_FAIL = 'AUTHENTICATION_FAIL';
+export const LOG_OUT = 'LOG_OUT';
 
 const POST_LIST_URL = '/postList';
 const SIGNIN_URL = '/login';
+const HOME = '/';
 
-export const signInSuccessed = (url) => ({
+export const signInSuccessed = () => ({
   type: SIGN_IN_SUCCESSED,
-  redirectUrl: url,
 });
 
 export const signInFailed = (error) => ({
@@ -22,9 +22,8 @@ export const signInFailed = (error) => ({
   error,
 });
 
-export const signUpSuccessed = (url) => ({
+export const signUpSuccessed = () => ({
   type: SIGN_UP_SUCCESSED,
-  redirectUrl: url,
 });
 
 export const signUpFailed = (error) => ({
@@ -32,7 +31,11 @@ export const signUpFailed = (error) => ({
   error,
 });
 
-export const userSignUp = ({ email, password, confirmedPassword }) => async (dispatch) => {
+export const logOuSuccess = () => ({
+  type: LOG_OUT,
+});
+
+export const userSignUp = ({ email, password, confirmedPassword }, history) => async (dispatch) => {
   try {
     const user = await callApi('auth/signup', 'post', {
       email,
@@ -40,7 +43,8 @@ export const userSignUp = ({ email, password, confirmedPassword }) => async (dis
       confirmedPassword,
     });
     console.log('sign up success---', user);
-    dispatch(signUpSuccessed(SIGNIN_URL));
+    dispatch(signUpSuccessed());
+    history.push(SIGNIN_URL);
     dispatch(saveUser(user));
   } catch (error) {
     console.log('sign up error----', error.message);
@@ -48,7 +52,7 @@ export const userSignUp = ({ email, password, confirmedPassword }) => async (dis
   }
 };
 
-export const userSignIn = ({ email, password }) => async (dispatch) => {
+export const userSignIn = ({ email, password }, history) => async (dispatch) => {
   try {
     const { token } = await callApi('auth/signin', 'post', {
       email,
@@ -60,10 +64,17 @@ export const userSignIn = ({ email, password }) => async (dispatch) => {
     const user = jwtDecode(token);
     console.log('sign in success user', user);
 
-    dispatch(signInSuccessed(POST_LIST_URL));
+    dispatch(signInSuccessed());
+    history.push(POST_LIST_URL);
     dispatch(saveUser({ email: user.email }));
   } catch (error) {
     console.log('sign in error', error.message);
     dispatch(signInFailed(error.message));
   }
+};
+
+export const userLogOut = (history) => (dispath) => {
+  dispath(logOuSuccess());
+  localStorage.removeItem('jwt');
+  history.push(HOME);
 };

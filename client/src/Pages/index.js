@@ -3,6 +3,7 @@ import LoginPage from './LogInPage/LoginPage';
 import SignUpPage from './SignUpPage/SignUpPage';
 import PostListPage from './PostListPage/PostListPage';
 import PostDetailPage from './PostDetailPage/PostDetailPage';
+import ErrorPage from './ErrorPage/ErrorPage';
 
 export {
   LandingPage,
@@ -10,4 +11,5 @@ export {
   SignUpPage,
   PostListPage,
   PostDetailPage,
+  ErrorPage,
 };

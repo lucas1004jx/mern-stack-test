@@ -1,7 +1,7 @@
-import useGetUser from './useGetUser';
+import useFetchUser from './useFetchUser';
 import useSelectedState from './useSelectedState';
 
 export {
-  useGetUser,
+  useFetchUser,
   useSelectedState,
 };

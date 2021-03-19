@@ -1,11 +1,11 @@
 import React from 'react';
-import { useGetUser, useSelectedState } from 'hooks';
+import { useFetchUser, useSelectedState } from 'hooks';
 import { Typography } from '@material-ui/core';
 import useStyles from './LandingPage.styles';
 
 const LandingPage = () => {
   const classes = useStyles();
-  const user = useGetUser();
+  const user = useFetchUser();
   const ui = useSelectedState('ui');
   const state = useSelectedState();
 

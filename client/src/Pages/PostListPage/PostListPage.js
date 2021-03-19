@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
+import { useSelectedState } from 'hooks';
 // Import Components
 import { addPostRequest, deletePostRequest, fetchPosts } from 'util/Actions/PostActions';
 import Logo from 'logo.svg';
@@ -10,12 +11,16 @@ import PostCreateWidget from './components/PostCreateWidget';
 
 const PostListPage = ({ showAddPost }) => {
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.posts.data);
+  const posts = useSelectedState(('posts')).data;
+  const { loading } = useSelectedState(('ui'));
+  const test = useSelector((state) => state);
+  console.log('PostDetailPage state----', test);
+
   useEffect(() => {
     dispatch(fetchPosts());
   }, []);
-  const test = useSelector((state) => state);
-  console.log('PostDetailPage state----', test);
+  if (loading) return <div>loading</div>;
+
   const handleDeletePost = (post) => {
     if (confirm('Do you want to delete this post')) { // eslint-disable-line
       dispatch(deletePostRequest(post));

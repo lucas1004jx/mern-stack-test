@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import { useDispatch } from 'react-redux';
-
+import { withRouter } from 'react-router-dom';
 import {
   TextField, Button,
 } from '@material-ui/core';
@@ -9,13 +10,13 @@ import { userSignIn } from 'util/Actions/AuthActions';
 import ErrorInfo from 'Components/ErrorInfo/ErrorInfo';
 import useStyles from './Components.styles';
 
-const LoginForm = () => {
+const LoginForm = ({ history }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignIn = () => dispatch(userSignIn({ email, password }));
+  const handleSignIn = () => dispatch(userSignIn({ email, password }, history));
 
   const handleSetPassword = (e) => setPassword(e.target.value);
 
@@ -53,4 +54,8 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+LoginForm.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired,
+};
+
+export default withRouter(LoginForm);

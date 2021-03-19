@@ -3,27 +3,28 @@ import {
   SIGN_IN_FAILED,
   SIGN_UP_SUCCESSED,
   SIGN_UP_FAILED,
-  AUTHENTICATION_FAIL,
+  LOG_OUT,
 } from '../Actions/AuthActions';
 
 // Initial State
 const initialState = {};
 
 const AuthReducer = (state = initialState, action) => {
-  const { type, redirectUrl, error } = action;
+  const { type, error } = action;
   switch (type) {
     case SIGN_IN_SUCCESSED:
-      return { redirectUrl };
+      return { ...state, authenticated: true };
 
     case SIGN_IN_FAILED:
-      return { ...state, signInError: error };
+      return { ...state, signInError: error, authenticated: false };
 
     case SIGN_UP_SUCCESSED:
-      return { redirectUrl };
+      return state;
 
     case SIGN_UP_FAILED:
       return { ...state, signUpError: error };
-    case AUTHENTICATION_FAIL:
+
+    case LOG_OUT:
       return {
         ...state,
         authenticated: false,
