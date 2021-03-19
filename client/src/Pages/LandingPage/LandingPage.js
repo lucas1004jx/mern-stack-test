@@ -7,6 +7,7 @@ const LandingPage = () => {
   const classes = useStyles();
   const user = useFetchUser();
   const ui = useSelectedState('ui');
+  const { authenticated } = useSelectedState('auth');
   const state = useSelectedState();
 
   console.log('Landing state', state);
@@ -14,9 +15,9 @@ const LandingPage = () => {
   return (
     <div className={classes.root}>
       <Typography>
-        Welcom to Alaya post
+        Welcom to Alaya blog
         {' '}
-        {user.email ?? ''}
+        {authenticated ? user.email : 'please log in'}
       </Typography>
     </div>
   );
