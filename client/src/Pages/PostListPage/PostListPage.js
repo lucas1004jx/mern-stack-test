@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useSelectedState } from 'hooks';
 // Import Components
 import { addPostRequest, deletePostRequest, fetchPosts } from 'util/Actions/PostActions';
-import Logo from 'logo.svg';
 import PostList from './components/PostList';
 import PostCreateWidget from './components/PostCreateWidget';
 // Import Actions
@@ -13,8 +12,6 @@ const PostListPage = ({ showAddPost }) => {
   const dispatch = useDispatch();
   const posts = useSelectedState(('posts')).data;
   const { loading } = useSelectedState(('ui'));
-  const test = useSelector((state) => state);
-  console.log('PostDetailPage state----', test);
 
   useEffect(() => {
     dispatch(fetchPosts());
@@ -35,7 +32,7 @@ const PostListPage = ({ showAddPost }) => {
     <div className="container">
       <div className="row">
         <div className="col-12 d-flex align-items-center">
-          <img className="mx-3" src={Logo} alt="Logo" style={{ height: '72px' }} />
+          <img className="mx-3" src="images/logo.svg" alt="Logo" style={{ height: '72px' }} />
           <h1 className="mt-4">
             Alaya Blog
           </h1>

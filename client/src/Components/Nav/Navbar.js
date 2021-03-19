@@ -4,33 +4,39 @@ import { useSelectedState } from 'hooks';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import { userLogOut } from 'util/Actions/AuthActions';
-import { Typography, Link, Button } from '@material-ui/core';
+import { Link, Button } from '@material-ui/core';
+import useStyles from './Navbar.styles';
 
 const Navbar = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const { authenticated } = useSelectedState('auth');
-  console.log('authenticated', authenticated);
 
   const handleLogOut = () => dispatch(userLogOut());
   return (
     <AppBar position="fixed">
-      <Toolbar>
-        <Typography variant="h6">
-          <Link href="/" className="text-white">Home</Link>
-        </Typography>
-        { authenticated
-          ? (
-            <div>
-              <Button href="/postList">Posts</Button>
-              <Button onClick={handleLogOut}>Log out</Button>
-            </div>
-          )
-          : (
-            <div>
-              <Button href="/login">sign in</Button>
-              <Button href="/signup">sign up</Button>
-            </div>
-          )}
+      <Toolbar className={classes.root}>
+        <Link href="/">
+          <img src="images/logo.svg" className={classes.logo} alt="logo" />
+        </Link>
+
+        <div className={classes.buttonWrapper}>
+          <Button variant="contained" className={classes.button} href="/">Home</Button>
+          { authenticated
+            ? (
+              <>
+                <Button variant="contained" className={classes.button} href="/postList">Posts</Button>
+                <Button variant="contained" className={classes.button} onClick={handleLogOut}>Log out</Button>
+              </>
+            )
+            : (
+              <>
+                <Button variant="contained" className={classes.button} href="/login">sign in</Button>
+                <Button variant="contained" className={classes.button} href="/signup">sign up</Button>
+              </>
+            )}
+
+        </div>
 
       </Toolbar>
     </AppBar>
