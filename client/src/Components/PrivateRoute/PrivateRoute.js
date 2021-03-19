@@ -5,8 +5,6 @@ import { useSelectedState } from 'hooks';
 
 const PrivateRoute = ({ children, ...rest }) => {
   const { authenticated } = useSelectedState('auth');
-  const auth = useSelectedState('auth');
-  console.log('PrivateRoute authenticated', auth);
   return <Route {...rest} render={() => (authenticated ? children : <Redirect to="/login" />)} />;
 };
 

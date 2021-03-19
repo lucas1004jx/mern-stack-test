@@ -16,7 +16,6 @@ const PostReducer = (state = initialState, action) => {
       };
 
     case DELETE_POST: {
-      console.log('delete_post');
       return {
         data: state.data.filter((post) => post.cuid !== action.cuid),
       }; }

@@ -42,7 +42,6 @@ export const userSignUp = ({ email, password, confirmedPassword }, history) => a
       password,
       confirmedPassword,
     });
-    console.log('sign up success---', user);
     dispatch(signUpSuccessed());
     history.push(SIGNIN_URL);
     dispatch(saveUser(user));
@@ -58,11 +57,9 @@ export const userSignIn = ({ email, password }, history) => async (dispatch) => 
       email,
       password,
     });
-    console.log('sign in success token', token);
 
     localStorage.setItem('jwt', token);
     const user = jwtDecode(token);
-    console.log('sign in success user', user);
 
     dispatch(signInSuccessed());
     history.push(POST_LIST_URL);

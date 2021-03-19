@@ -8,9 +8,7 @@ const LandingPage = () => {
   const user = useFetchUser();
   const ui = useSelectedState('ui');
   const { authenticated } = useSelectedState('auth');
-  const state = useSelectedState();
 
-  console.log('Landing state', state);
   if (ui.loading) return <div>loading</div>;
   return (
     <div className={classes.root}>

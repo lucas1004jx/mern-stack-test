@@ -28,7 +28,6 @@ function App(props) {
   if (localStorage.jwt) {
     const user = jwtDecode(localStorage.jwt);
     store.dispatch(saveUser(user));
-    console.log('user', user);
   }
 
   return (

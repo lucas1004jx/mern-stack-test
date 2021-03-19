@@ -35,7 +35,6 @@ export const addPostRequest = (post) => async (dispatch) => {
 };
 
 export function addPosts(posts) {
-  console.log('addPosts', addPosts);
   return {
     type: ADD_POSTS,
     posts,
@@ -74,7 +73,6 @@ export function deletePost(cuid) {
 export const deletePostRequest = (cuid) => async (dispatch) => {
   try {
     dispatch({ type: FETCHING_START });
-    console.log('deletePostRequest cuid---', cuid);
     await callApi(`api/posts/${cuid}`, 'delete');
     dispatch(deletePost(cuid));
     dispatch({ type: FETCHING_END });
