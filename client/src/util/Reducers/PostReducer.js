@@ -15,10 +15,11 @@ const PostReducer = (state = initialState, action) => {
         data: action.posts,
       };
 
-    case DELETE_POST:
+    case DELETE_POST: {
+      console.log('delete_post');
       return {
         data: state.data.filter((post) => post.cuid !== action.cuid),
-      };
+      }; }
 
     default:
       return state;

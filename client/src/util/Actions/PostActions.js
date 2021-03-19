@@ -78,6 +78,7 @@ export function deletePost(cuid) {
 export const deletePostRequest = (cuid) => async (dispatch) => {
   try {
     dispatch({ type: FETCHING_START });
+    console.log('deletePostRequest cuid---', cuid);
     await callApi(`api/posts/${cuid}`, 'delete');
     dispatch(deletePost(cuid));
     dispatch({ type: FETCHING_END });
