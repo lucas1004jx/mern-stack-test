@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import fetch from 'isomorphic-fetch';
+import uploadMeida from 'util/uploadMedia';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -35,17 +35,10 @@ const PostCreateWidget = ({ addPost }) => {
 
   const handleUpload = async (e) => {
     const source = e.target.files[0];
-    const data = new FormData();
-    data.append('file', source);
-    data.append('upload_preset', 'alayaimages');
 
     setLoading(true);
-    const res = await fetch('https://api.cloudinary.com/v1_1/dup7efxhj/image/upload', {
-      method: 'POST',
-      body: data,
-    });
 
-    const file = await res.json();
+    const file = await uploadMeida(source);
 
     setState({
       ...state,
