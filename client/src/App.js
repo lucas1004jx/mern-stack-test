@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import jwtDecode from 'jwt-decode';
 import { saveUser } from 'util/Actions/UserActions';
+import { userLogOut } from 'util/Actions/AuthActions';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import './App.css';
 import {
@@ -28,6 +29,12 @@ function App(props) {
   if (localStorage.jwt) {
     const user = jwtDecode(localStorage.jwt);
     store.dispatch(saveUser(user));
+
+    const currentTime = Date.now() / 1000;
+
+    if (user.exp < currentTime) {
+      store.dispatch(userLogOut());
+    }
   }
 
   return (
