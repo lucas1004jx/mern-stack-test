@@ -12,7 +12,7 @@ const SignUpPage = () => {
   const { authenticated } = useSelectedState('auth');
   useEffect(() => {
     if (authenticated) {
-      history.push('/');
+      history.push('/login');
     }
   }, [authenticated]);
   return (

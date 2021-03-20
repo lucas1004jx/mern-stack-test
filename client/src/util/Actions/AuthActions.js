@@ -37,14 +37,13 @@ export const logOuSuccess = () => ({
 
 export const userSignUp = ({ email, password, confirmedPassword }, history) => async (dispatch) => {
   try {
-    const user = await callApi('auth/signup', 'post', {
+    await callApi('auth/signup', 'post', {
       email,
       password,
       confirmedPassword,
     });
     dispatch(signUpSuccessed());
     history.push(SIGNIN_URL);
-    dispatch(saveUser(user));
   } catch (error) {
     console.log('sign up error----', error.message);
     dispatch(signUpFailed(error.message));
