@@ -15,8 +15,6 @@ const signIn = async (req,res) => {
 
 	const user = await User.findOne({email:email});
 	
-	console.log('user',user);
-
 	const jwt_payload = {
 		id:user._id,
 		email:user.email,

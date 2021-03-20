@@ -41,7 +41,7 @@ const addPost = async (req, res) => {
 
 	newPost.slug = slug(newPost.title.toLowerCase(), { lowercase: true });
 	newPost.cuid = cuid();
-	console.log('newPost--->,',newPost);
+	
 	newPost.save((err, saved) => {
 		if (err) {
 			res.status(500).send(err);

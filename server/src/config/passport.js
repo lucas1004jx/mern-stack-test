@@ -11,7 +11,6 @@ const options = {
 
 const strategy = new JwtStrategy(options,async (jwt_payload, done)=>{
 
-	console.log('jwt payload--->',jwt_payload);
 	try {
 		const {email} = jwt_payload;
 		const user = await User.findOne({email:email});
