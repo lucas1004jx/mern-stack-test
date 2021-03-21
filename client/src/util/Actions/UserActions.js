@@ -17,7 +17,6 @@ export const fetchUser = () => async (dispatch) => {
   try {
     dispatch({ type: FETCHING_START });
     const user = await callApi('user/profile');
-    console.log('fetchUser', user);
     dispatch(saveUser(user));
     dispatch({ type: FETCHING_END });
   } catch (error) {
