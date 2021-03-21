@@ -35,9 +35,12 @@ export const logOuSuccess = () => ({
   type: LOG_OUT,
 });
 
-export const userSignUp = ({ email, password, confirmedPassword }, history) => async (dispatch) => {
+export const userSignUp = ({
+  userName, email, password, confirmedPassword,
+}, history) => async (dispatch) => {
   try {
     await callApi('auth/signup', 'post', {
+      userName,
       email,
       password,
       confirmedPassword,

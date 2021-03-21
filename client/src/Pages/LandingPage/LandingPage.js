@@ -8,14 +8,14 @@ const LandingPage = () => {
   const user = useFetchUser();
   const ui = useSelectedState('ui');
   const { authenticated } = useSelectedState('auth');
-
+  console.log('user--', user);
   if (ui.loading) return <div>loading</div>;
   return (
     <div className={classes.root}>
       <Typography>
         Welcom to Alaya blog
         {' '}
-        {authenticated ? user.email : 'please log in'}
+        {authenticated ? user.userName : 'please log in'}
       </Typography>
     </div>
   );

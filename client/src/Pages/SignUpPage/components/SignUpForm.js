@@ -13,39 +13,44 @@ const SignUpForm = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmedPassword, setComfirmedPassword] = useState('');
+  const [inputValue, setInputValue] = useState({});
 
-  const handleSignUp = () => dispatch(userSignUp({ email, password, confirmedPassword }, history));
+  const handleChange = (evt) => {
+    const { value } = evt.target;
+    setInputValue({
+      ...inputValue,
+      [evt.target.name]: value,
+    });
+  };
 
-  const handleSetPassword = (e) => setPassword(e.target.value);
-  const handleComfirmPassword = (e) => setComfirmedPassword(e.target.value);
-  const handleSetEmail = (e) => setEmail(e.target.value);
+  const handleSignUp = () => dispatch(userSignUp(inputValue, history));
 
   return (
     <>
       <ErrorInfo type="signUp" />
       <div className={classes.inputArea}>
-        <TextField required id="standard-required" label="EMAIL" defaultValue="" className={classes.input} onChange={handleSetEmail} />
+        <TextField required id="standard-required" label="USER NAME" name="userName" defaultValue="" className={classes.input} onChange={handleChange} />
+        <TextField required id="standard-required" label="EMAIL" name="email" defaultValue="" className={classes.input} onChange={handleChange} />
         <TextField
           required
           id="standard-password-input"
           label="PASSWORD"
+          name="password"
           type="password"
           autoComplete="current-password"
           className={classes.input}
-          onChange={handleSetPassword}
+          onChange={handleChange}
         />
 
         <TextField
           required
           id="standard-password-input"
           label="CONFIRM PASSWORD"
+          name="confirmedPassword"
           type="password"
           autoComplete="current-password"
           className={classes.input}
-          onChange={handleComfirmPassword}
+          onChange={handleChange}
         />
 
       </div>

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
 // Import Style
 
 const useStyles = makeStyles((theme) => ({
@@ -16,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 const PostCreateWidget = ({ addPost }) => {
   const [state, setState] = useState({});
+  const [fileName, setFileName] = useState();
   const [loading, setLoading] = useState(false);
   const classes = useStyles();
 
@@ -39,6 +41,7 @@ const PostCreateWidget = ({ addPost }) => {
     setLoading(true);
 
     const file = await uploadMeida(source);
+    setFileName(file.original_filename);
 
     setState({
       ...state,
@@ -57,9 +60,11 @@ const PostCreateWidget = ({ addPost }) => {
       <TextField variant="filled" label="Author name" name="name" onChange={handleChange} />
       <TextField variant="filled" label="Post title" name="title" onChange={handleChange} />
       <TextField variant="filled" multiline rows="4" label="Post content" name="content" onChange={handleChange} />
+      {fileName && <Typography>{fileName}</Typography>}
       <Button
         variant="contained"
         component="label"
+        color="primary"
       >
         Upload File
         <input

@@ -30,10 +30,26 @@ afterAll(async () => await dbHandler.closeDatabase());
 /**
  * Product test suite.
  */
-describe('product ', () => {
+describe('user register input validation test ', () => {
+
+ it('tests user name can not be empty', async () => {
+        const data = {
+            userName:'',
+            email:'test@test.com',
+            password:'123456',
+            confirmedPassword:'123456'
+        }
+        const result = await validateRegisterInput(data);
+        const expected = {
+            errors:['The required field can\'t be empty'],
+            isValid:false
+        }
+        expect(result).toEqual(expected)
+    });
 
     it('tests email can not be empty', async () => {
         const data = {
+            userName:'test',
             email:'',
             password:'123456',
             confirmedPassword:'123456'
@@ -48,6 +64,7 @@ describe('product ', () => {
 
     it('tests password can not be empty', async () => {
         const data = {
+            userName:'test',
             email:'test@test.com',
             password:'',
             confirmedPassword:'123456'
@@ -76,6 +93,7 @@ describe('product ', () => {
 
     it('tests email is not valid', async () => {
         const data = {
+            userName:'test',
             email:'test@test',
             password:'123456',
             confirmedPassword:'123456'
@@ -90,6 +108,7 @@ describe('product ', () => {
 
     it('tests the password should at least have 6 characters', async () => {
         const data = {
+            userName:'test',
             email:'test@test.com',
             password:'1234',
             confirmedPassword:'1234'
@@ -103,7 +122,8 @@ describe('product ', () => {
     });
 
     it('tests the password doesn\'t match', async () => {
-        const data = {
+        const data = { 
+            userName:'test',
             email:'test@test.com',
             password:'123456',
             confirmedPassword:'12345678'
@@ -118,6 +138,7 @@ describe('product ', () => {
 
     it('tests user already exists', async () => {
         const user = {
+            userName:'test',
             email:'test@test.com',
             password:'123456',
         }
@@ -125,6 +146,7 @@ describe('product ', () => {
         await newUser.save();
         
         const data = {
+            userName:'test',
             email:'test@test.com',
             password:'123456', 
             confirmedPassword:'123456'
@@ -142,6 +164,7 @@ describe('product ', () => {
      it('tests the user input is valid', async () => {
        
         const data = {
+            userName:'test',
             email:'test@test.com',
             password:'123456',
             confirmedPassword:'123456'

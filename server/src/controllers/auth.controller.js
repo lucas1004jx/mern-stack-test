@@ -17,6 +17,7 @@ const signIn = async (req,res) => {
 	
 	const jwt_payload = {
 		id:user._id,
+		userName:user.userName,
 		email:user.email,
 		dateAdded:user.dateAdded
 	};
@@ -41,9 +42,9 @@ const signUp = async (req,res) => {
 		return res.status(400).json({ message: errors });
 	}
 
-	const {email,password} = req.body;
+	const {userName,email,password} = req.body;
 
-	const newUser = new User({ email, password});
+	const newUser = new User({userName, email, password});
 	await newUser.save();
 	
 	res.status(200).json({email});

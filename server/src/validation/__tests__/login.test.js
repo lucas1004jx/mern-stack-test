@@ -30,7 +30,7 @@ afterAll(async () => await dbHandler.closeDatabase());
 /**
  * Product test suite.
  */
-describe('product ', () => {
+describe('user login input validation test ', () => {
 
     it('tests email can not be empty', async () => {
         const data = {
@@ -60,6 +60,7 @@ describe('product ', () => {
 
     it('tests user not found', async () => {
         const user = {
+            userName:'test',
             email:'test@test.com',
             password:'123456'
         }
@@ -81,6 +82,7 @@ describe('product ', () => {
 
     it('tests password is incorrect', async () => {
         const user = {
+            userName:'test',
             email:'test@test.com',
             password:'123456'
         }
@@ -102,6 +104,7 @@ describe('product ', () => {
 
      it('tests the user input is valid', async () => {
         const user = {
+            userName:'test',
             email:'test@test.com',
             password:'123456'
         }

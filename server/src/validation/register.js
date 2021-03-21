@@ -2,11 +2,11 @@ const Validator = require('Validator');
 const User = require('../models/user');
 
 const validateRegisterInput = async (data) =>{
-	const {password = '',confirmedPassword = '', email = ''} = data;
+	const {userName = '',password = '',confirmedPassword = '', email = ''} = data;
 	let errors = [];
 	
 	
-	if(Validator.isEmpty(email) || Validator.isEmpty(password)|| Validator.isEmpty(confirmedPassword) ) {
+	if(Validator.isEmpty(userName) || Validator.isEmpty(email) || Validator.isEmpty(password)|| Validator.isEmpty(confirmedPassword) ) {
 		errors.push('The required field can\'t be empty');
 	}else{
 		//check email if is valid

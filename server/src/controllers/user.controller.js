@@ -1,9 +1,10 @@
 
 
 const getCurrentUser = (req,res) => {
-	const {email,dateAdded} = req.user;
+	const {userName,email,dateAdded} = req.user;
 	console.log('getCurrentUser',email);
 	res.status(200).json({
+		userName,
 		email,
 		dateAdded
 	});
