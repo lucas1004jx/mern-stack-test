@@ -12,10 +12,6 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     height: theme.spacing(7),
   },
-  button: {
-    background: theme.palette.info.light,
-    marginLeft: theme.spacing(2),
-  },
 }));
 
 export default useStyles;

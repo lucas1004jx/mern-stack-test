@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     textAlign: 'center',
   },
@@ -12,6 +12,19 @@ const useStyles = makeStyles(() => ({
       height: '100%',
       objectFit: 'cover',
       objectPosition: 'center',
+    },
+  },
+  title: {
+    marginBottom: theme.spacing(2),
+  },
+  buttonWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    '& > button': {
+      marginRight: theme.spacing(2),
+    },
+    '& > button:last-child': {
+      marginRight: 0,
     },
   },
 

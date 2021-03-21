@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { useSelectedState } from 'hooks';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
@@ -11,7 +10,6 @@ import useStyles from './Navbar.styles';
 const Navbar = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const history = useHistory();
   const { authenticated } = useSelectedState('auth');
 
   const handleLogOut = () => dispatch(userLogOut());
@@ -24,20 +22,9 @@ const Navbar = () => {
         </Link>
 
         <div className={classes.buttonWrapper}>
-          <Button variant="contained" className={classes.button} onClick={() => history.push('/')}>Home</Button>
-          { authenticated
-            ? (
-              <>
-                <Button variant="contained" className={classes.button} onClick={() => history.push('/postList')}>Posts</Button>
-                <Button variant="contained" className={classes.button} onClick={handleLogOut}>Log out</Button>
-              </>
-            )
-            : (
-              <>
-                <Button variant="contained" className={classes.button} onClick={() => history.push('/login')}>sign in</Button>
-                <Button variant="contained" className={classes.button} onClick={() => history.push('/signup')}>sign up</Button>
-              </>
-            )}
+          { authenticated && (
+          <Button className={classes.button} onClick={handleLogOut}>Log out</Button>
+          )}
 
         </div>
 
