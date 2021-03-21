@@ -11,7 +11,7 @@ import useStyles from './Componentes.styles';
 function PostListItem({ post, onDelete }) {
   const classes = useStyles();
   const {
-    title, content, name, cuid, slug,
+    title, content, name, cuid, slug, media,
   } = post;
   return (
     <Card className="w-100 my-4">
@@ -24,9 +24,11 @@ function PostListItem({ post, onDelete }) {
         <Typography component="p" className="mt-3">
           {content}
         </Typography>
+        { media && (
         <figure className={classes.imgWrapper}>
-          <img src={post.media} alt="media" />
+          <img src={media} alt="media" />
         </figure>
+        )}
         <Typography color="textSecondary" component="p" className="mt-3 font-italic">
           From
           {' '}

@@ -57,7 +57,17 @@ const PostCreateWidget = ({ addPost }) => {
       <TextField variant="filled" label="Author name" name="name" onChange={handleChange} />
       <TextField variant="filled" label="Post title" name="title" onChange={handleChange} />
       <TextField variant="filled" multiline rows="4" label="Post content" name="content" onChange={handleChange} />
-      <TextField type="file" name="file" placeholder="upload an image" onChange={handleUpload} />
+      <Button
+        variant="contained"
+        component="label"
+      >
+        Upload File
+        <input
+          type="file"
+          onChange={handleUpload}
+          hidden
+        />
+      </Button>
       <Button className="mt-4" variant="contained" color="primary" onClick={() => submit()} disabled={submitButtonDisabledCondition}>
         Submit
       </Button>
