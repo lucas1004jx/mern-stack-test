@@ -1,4 +1,4 @@
-import { SAVE_USER } from '../Actions/UserActions';
+import { SAVE_USER, CLEAR_USER } from '../Actions/UserActions';
 import { LOG_OUT } from '../Actions/AuthActions';
 
 // Initial State
@@ -9,6 +9,8 @@ const UserReducer = (state = initialState, action) => {
   switch (type) {
     case SAVE_USER:
       return user;
+    case CLEAR_USER:
+      return initialState;
     case LOG_OUT:
       return initialState;
     default:

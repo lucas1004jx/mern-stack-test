@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
       marginRight: theme.spacing(1),
     },
   },
+  signIn: {
+    textAlign: 'right',
+    marginTop: theme.spacing(1),
+  },
 }));
 
 export default useStyles;

@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
 import uploadMeida from 'util/uploadMedia';
 import PropTypes from 'prop-types';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+import useStyles from './Componentes.styles';
 // Import Style
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
 
 const PostCreateWidget = ({ addPost }) => {
   const [state, setState] = useState({});
@@ -61,18 +55,22 @@ const PostCreateWidget = ({ addPost }) => {
       <TextField variant="filled" label="Post title" name="title" onChange={handleChange} />
       <TextField variant="filled" multiline rows="4" label="Post content" name="content" onChange={handleChange} />
       {fileName && <Typography>{fileName}</Typography>}
-      <Button
-        variant="contained"
-        component="label"
-        color="primary"
-      >
-        Upload File
-        <input
-          type="file"
-          onChange={handleUpload}
-          hidden
-        />
-      </Button>
+      {loading ? <div className={classes.loader}><CircularProgress /></div> : (
+        <Button
+          variant="contained"
+          component="label"
+          color="primary"
+          startIcon={<CloudUploadIcon />}
+        >
+          Upload File
+          <input
+            type="file"
+            onChange={handleUpload}
+            hidden
+          />
+        </Button>
+      )}
+
       <Button className="mt-4" variant="contained" color="primary" onClick={() => submit()} disabled={submitButtonDisabledCondition}>
         Submit
       </Button>

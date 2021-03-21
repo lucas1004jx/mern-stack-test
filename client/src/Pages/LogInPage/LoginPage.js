@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Paper, Typography } from '@material-ui/core';
+import { Paper, Typography, Button } from '@material-ui/core';
 import { useSelectedState } from 'hooks';
 import LoginForm from './components/LoginForm';
 
@@ -23,6 +23,10 @@ const LoginPage = () => {
           <Typography variant="h6">Sign In</Typography>
         </div>
         <LoginForm type="signIn" />
+
+        <div className={classes.signUp}>
+          <Button onClick={() => history.push('/signup')} color="secondary">Need a account? sign up</Button>
+        </div>
       </Paper>
     </div>
   );

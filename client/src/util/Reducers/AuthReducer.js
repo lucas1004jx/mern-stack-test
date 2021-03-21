@@ -1,4 +1,4 @@
-import { SAVE_USER } from 'util/Actions/UserActions';
+import { SAVE_USER, CLEAR_USER } from 'util/Actions/UserActions';
 import {
   SIGN_IN_SUCCESSED,
   SIGN_IN_FAILED,
@@ -17,6 +17,8 @@ const AuthReducer = (state = initialState, action) => {
       return { ...state, authenticated: true };
     case SAVE_USER:
       return { ...state, authenticated: true };
+    case CLEAR_USER:
+      return { ...state, authenticated: false };
     case SIGN_IN_FAILED:
       return { ...state, signInError: error, authenticated: false };
 

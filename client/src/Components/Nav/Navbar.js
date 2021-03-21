@@ -11,7 +11,6 @@ const Navbar = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { authenticated } = useSelectedState('auth');
-
   const handleLogOut = () => dispatch(userLogOut());
 
   return (
