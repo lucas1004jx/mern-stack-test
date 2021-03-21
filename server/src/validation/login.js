@@ -8,7 +8,7 @@ const validateLoginInput = async (data) =>{
 
 	//first check the input field is not empty
 	if(Validator.isEmpty(email) || Validator.isEmpty(password) ) {
-		errors.push('The required field can\'t be empty ');
+		errors.push('The required field can\'t be empty');
 	}else{
 		const user = await User.findOne({email:email});
 		//check if user exists

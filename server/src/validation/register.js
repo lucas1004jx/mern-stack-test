@@ -7,7 +7,7 @@ const validateRegisterInput = async (data) =>{
 	
 	
 	if(Validator.isEmpty(email) || Validator.isEmpty(password)|| Validator.isEmpty(confirmedPassword) ) {
-		errors.push('The required field can\'t be empty ');
+		errors.push('The required field can\'t be empty');
 	}else{
 		//check email if is valid
 		if(!Validator.isEmail(email)) {
